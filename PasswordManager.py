@@ -3,6 +3,11 @@ import os
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from random import choice
+
+symbols = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' , 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4',
+           ,'5' ',6' ,'7' ,'8' ,'9', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+',
+            '{', '}', '|', ':', '"', '<', '>', '?'] # this is a symbols for create password
 
 class PasswordManager:
     def __init__(self, master_password):
@@ -46,8 +51,9 @@ def main():
         print("\n1. Add a password")
         print("2. Get a password")
         print("3. List all websites")
-        print("4. Exit")
-        choice = input("Enter your choice (1-4): ")
+        print('4. Create a password')
+        print("5. Exit")
+        choice = input("Enter your choice (1-5): ")
 
         if choice == '1':
             website = input("Enter website: ")
@@ -68,7 +74,13 @@ def main():
             print("Stored websites:")
             for site in websites:
                 print(site)
-        elif choice == '4':
+        elif choise == '4':
+            lenofpassword = int(input('What is len of password?: '))
+            password = ''
+            for i in range(lenofpassword):
+                password = password + random.choice(symbols)
+            print(f'this is your password: {password}')
+        elif choice == '5':
             print("Exiting...")
             break
         else:
